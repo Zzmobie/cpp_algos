@@ -1,4 +1,4 @@
-//Calculate determinant in F_p
+//Calculate determinant in F_p, small primes p < 2^16. O(n^3)
 #include <bits/stdc++.h>
 
 const int MAXN = 305;
