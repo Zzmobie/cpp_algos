@@ -2,26 +2,29 @@
 
 const long long int A = 305;
 const long long int B = 305;
-const long long int large_prime = (1LL << 62) - 57;
+const long long int large_prime = 1000000007;
 
-long long int prime_field_hash(){
-	return 0;
+long long int arr[1000];
+
+//hashes x to [0..M-1] with keys a, b
+long long int prime_field_hash(long long int a, long long int b, long long int x, long long int M){
+	return ((a*(x % large_prime) + b) % large_prime) % M;
 }
 
-//returns a*b mod p in o(logb) time p < 2^62
-long long mul(long long a, long long b, long long p){
-	a = (a + p) % p;
-	b = (b + p) % p;
-	long long int ret = 0;
-	while(b != 0){
-		if(b % 2) ret = (ret + a) % p;
-		a = (a * 2) % p;
-		b /= 2;
-	}
-	return ret;
+//generates random keys a,b to hash x to [0..M-1]
+long long int random_prime_field_hash(long long int x, long long int M){
+	srand(time(NULL));
+	long long int a = rand(),b = rand();
+	while(a == (1LL << 31) - 1 || a == 0) a = rand();
+	while(b == (1LL << 31) - 1) b = rand();
+	return prime_field_hash(a,b,x,M);
 }
 
 int main(void){
-	long long int c[A][B];
-	printf("%lli\n",large_prime);
+	for(long long int i = 0; i < 1000000; i++){
+		arr[random_prime_field_hash(i,1000)]++;
+	}
+	for(int i = 0; i < 1000; i++){
+		printf("%lli ",arr[i]);
+	}
 }
