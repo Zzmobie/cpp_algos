@@ -6,7 +6,7 @@ const int PRIME = 1e9 + 7;
 
 long long mat[MAXN][MAXN];
 
-//returns a*b mod p in o(b) time p < 2^62
+//returns a*b mod p in o(logb) time p < 2^62
 long long mul(long long a, long long b, long long p){
 	a = (a + p) % p;
 	b = (b + p) % p;
