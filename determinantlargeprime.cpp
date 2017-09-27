@@ -1,4 +1,4 @@
-//Calculate determinant in F_p for larger primes, p < 2^63, O(n^3logp)
+//Calculate determinant in F_p for larger primes, p < 2^62, O(n^3logp)
 #include <bits/stdc++.h>
 
 const int MAXN = 305;
@@ -6,7 +6,7 @@ const int PRIME = 1e9 + 7;
 
 long long mat[MAXN][MAXN];
 
-//returns a*b mod p in o(b) time p < 2^63
+//returns a*b mod p in o(b) time p < 2^62
 long long mul(long long a, long long b, long long p){
 	a = (a + p) % p;
 	b = (b + p) % p;
