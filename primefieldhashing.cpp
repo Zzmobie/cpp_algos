@@ -13,14 +13,13 @@ long long int prime_field_hash(long long int a, long long int b, long long int x
 
 //generates random keys a,b to hash x to [0..M-1]
 long long int random_prime_field_hash(long long int x, long long int M){
-	srand(time(NULL));
-	long long int a = rand(),b = rand();
-	while(a == (1LL << 31) - 1 || a == 0) a = rand();
-	while(b == (1LL << 31) - 1) b = rand();
+	long long int a = (rand() << 16) + rand(),b = (rand() << 16) + rand();
+	while((a % large_prime) == 0) a = (rand() << 16) + rand(); //we want a random int between 0, large_prime - 1, but we are going to mod it so, doesn't matter. 
 	return prime_field_hash(a,b,x,M);
 }
 
 int main(void){
+	srand(time(NULL));
 	for(long long int i = 0; i < 1000000; i++){
 		arr[random_prime_field_hash(i,1000)]++;
 	}
